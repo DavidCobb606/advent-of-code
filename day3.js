@@ -3,25 +3,12 @@ const {readFileSync} = require("fs")
 
 
 const readData = (data) => {
-    const contents = readFileSync(data, "utf-8")
-    const arr = contents.split(/\r?\n/)
-    
-    let dataArray = [...arr]
-
-    let practiceArr = [
-        "vJrwpWtwJgWrhcsFMMfFFhFp", 
-        "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
-        "PmmdzqPrVvPwwTWBwg",
-        "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
-        "ttgJtRGJQctTZtZT",
-        "CrZsJsPPZsGzwwsLwLmpwMDw"
-    ]
-
-
-
-    let comparisionArr = []
-    let sharedValues = []
-    let count = 0
+    const contents = readFileSync(data, "utf-8");
+    const arr = contents.split(/\r?\n/);
+    let dataArray = [...arr];
+    let comparisionArr = [];
+    let sharedValues = [];
+    let count = 0;
     const alphabetConversion = {
         a: 1,
         b:2,
@@ -82,13 +69,13 @@ const readData = (data) => {
         for (let i=0; i<rucksack.length; i++){
             if(i<rucksack.length/2){
                 
-                comparisionArr.push(rucksack[i])
+                comparisionArr.push(rucksack[i]);
                 
             } else if (i>=rucksack.length/2){
 
                 if(comparisionArr.includes(rucksack[i])){
-                    sharedValues.push(rucksack[i])
-                    break
+                    sharedValues.push(rucksack[i]);
+                    break;
 
                 }              
             }          
@@ -96,66 +83,57 @@ const readData = (data) => {
     comparisionArr = []
     })
 
-    
-
-
-
     for(let i=0; i<sharedValues.length; i++){
-        count += alphabetConversion[sharedValues[i]]
+        count += alphabetConversion[sharedValues[i]];
     }
     
 //part 2
 
-let secondComparisionArr = [];
-let secondSharedValues = [];
-let thirdComparisionArr = [];
-let index = 0
-let count2 = 0
+    let secondComparisionArr = [];
+    let secondSharedValues = [];
+    let thirdComparisionArr = [];
+    let index = 0;
+    let count2 = 0;
 
-const part2AlphabetConversion = {...alphabetConversion}
+    const part2AlphabetConversion = {...alphabetConversion}
 
 
 
-dataArray.forEach((rucksack) => {
-    console.log(index)
+    dataArray.forEach((rucksack) => {
     
-   if(index===0){
-    for (let i=0; i<rucksack.length; i++){
-        secondComparisionArr.push(rucksack[i])
+        if(index===0){
+            for (let i=0; i<rucksack.length; i++){
+                secondComparisionArr.push(rucksack[i])
     
-    }  
-    index++
-   } else if (index===1){
-        for (let i=0; i<rucksack.length; i++){
-            if(secondComparisionArr.includes(rucksack[i])){
-            thirdComparisionArr.push(rucksack[i])
-            } 
-        }
-        index++
-        
-   } else if (index===2){
-    console.log("i=2")
-        for (let i =0; i<rucksack.length; i++){
-            console.log("i =2 loop")
-            if(thirdComparisionArr.includes(rucksack[i])){
-                secondSharedValues.push(rucksack[i])
-                break
+            }  
+            index++
+        } else if (index===1){
+            for (let i=0; i<rucksack.length; i++){
+                if(secondComparisionArr.includes(rucksack[i])){
+                thirdComparisionArr.push(rucksack[i])
+                } 
             }
+            index++
+        
+        } else if (index===2){
+
+            for (let i =0; i<rucksack.length; i++){
+                
+                if(thirdComparisionArr.includes(rucksack[i])){
+                    secondSharedValues.push(rucksack[i])
+                    break
+                }
+            }
+            index = 0
+            secondComparisionArr = []
+            thirdComparisionArr = []
         }
-        index = 0
-        secondComparisionArr = []
-        thirdComparisionArr = []
-    }
-   
-  
-})
+    })
 
-console.log(secondSharedValues, "secondsharedvalues <=====")
-
-for(let i=0; i<secondSharedValues.length; i++){
+    for(let i=0; i<secondSharedValues.length; i++){
     count2 += alphabetConversion[secondSharedValues[i]]
-}
-return count2
+    }
+    return count2
 }
 
 
