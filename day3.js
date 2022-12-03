@@ -16,25 +16,66 @@ const readData = (data) => {
         "ttgJtRGJQctTZtZT",
         "CrZsJsPPZsGzwwsLwLmpwMDw"
     ]
-    console.log(practiceArr[0].length/2)
-    
 
 
-   //2 components. All items of a given type are meant to go into 1 of 2 compartments. This is not currently the case for 1 item type per rucksack. 
-   //Every item type is identified by a single lowercase or uppercase letter.  e.g. A and a refer to diff types of items. 
-
-   //List of items for each rucksack is given as characters all on 1 line. Any given rucksack has the same number of items in each of its compartments. First half represents items in the first component; second half of the characters represent items in the second compartment. 
-
-    //Every item type can be covnerted to a priority: lowercase items a-z have priorities 1-26.
-    // uppercase items A-Z have priorities 27-52.
-
-    //find the item type that appears in both compartments of each rucksack, and find the sum of those item types. 
 
     let comparisionArr = []
     let sharedValues = []
-    const alphabetConversion =[]
-    
-    String.fromCharCode()
+    let count = 0
+    const alphabetConversion = {
+        a: 1,
+        b:2,
+        c:3,
+        d:4,
+        e:5,
+        f:6,
+        g:7,
+        h:8,
+        i:9,
+        j:10,
+        k:11,
+        l: 12,
+        m: 13,
+        n:14,
+        o: 15,
+        p: 16,
+        q: 17,
+        r: 18,
+        s: 19,
+        t: 20,
+        u: 21,
+        v: 22,
+        w: 23,
+        x: 24,
+        y: 25,
+        z: 26,
+        A: 27,
+        B: 28,
+        C: 29,
+        D: 30,
+        E: 31, 
+        F: 32,
+        G: 33,
+        H: 34,
+        I: 35,
+        J: 36,
+        K: 37,
+        L: 38,
+        M: 39,
+        N: 40,
+        O: 41,
+        P: 42,
+        Q: 43,
+        R: 44,
+        S: 45,
+        T: 46,
+        U: 47,
+        V: 48,
+        W: 49,
+        X: 50,
+        Y: 51,
+        Z: 52
+    }
     
     practiceArr.forEach((rucksack) => {
 
@@ -55,18 +96,66 @@ const readData = (data) => {
     comparisionArr = []
     })
 
-    for (let i=0; i<sharedValues.length; i++){
-        alphabetConversion.push(sharedValues[i].charCodeAt(0))
+    
+
+
+
+    for(let i=0; i<sharedValues.length; i++){
+        count += alphabetConversion[sharedValues[i]]
     }
+    
+//part 2
 
-    console.log(alphabetConversion)
-    let lettersArr = ["a", ""]
+let secondComparisionArr = [];
+let secondSharedValues = [];
+let thirdComparisionArr = [];
+let index = 0
+let count2 = 0
+
+const part2AlphabetConversion = {...alphabetConversion}
 
 
-    console.log(comparisionArr, "<==== compArr")
-    console.log(sharedValues, "<==== sharedValues")
 
+dataArray.forEach((rucksack) => {
+    console.log(index)
+    
+   if(index===0){
+    for (let i=0; i<rucksack.length; i++){
+        secondComparisionArr.push(rucksack[i])
+    
+    }  
+    index++
+   } else if (index===1){
+        for (let i=0; i<rucksack.length; i++){
+            if(secondComparisionArr.includes(rucksack[i])){
+            thirdComparisionArr.push(rucksack[i])
+            } 
+        }
+        index++
+        
+   } else if (index===2){
+    console.log("i=2")
+        for (let i =0; i<rucksack.length; i++){
+            console.log("i =2 loop")
+            if(thirdComparisionArr.includes(rucksack[i])){
+                secondSharedValues.push(rucksack[i])
+                break
+            }
+        }
+        index = 0
+        secondComparisionArr = []
+        thirdComparisionArr = []
+    }
+   
+  
+})
 
+console.log(secondSharedValues, "secondsharedvalues <=====")
+
+for(let i=0; i<secondSharedValues.length; i++){
+    count2 += alphabetConversion[secondSharedValues[i]]
+}
+return count2
 }
 
 
