@@ -64,7 +64,7 @@ const readData = (data) => {
         Z: 52
     }
     
-    practiceArr.forEach((rucksack) => {
+    dataArray.forEach((rucksack) => {
 
         for (let i=0; i<rucksack.length; i++){
             if(i<rucksack.length/2){
