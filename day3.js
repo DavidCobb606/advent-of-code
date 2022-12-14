@@ -75,7 +75,7 @@ const readData = (data) => {
 
                 if(comparisionArr.includes(rucksack[i])){
                     sharedValues.push(rucksack[i]);
-                    break;
+                    break
 
                 }              
             }          
@@ -83,10 +83,21 @@ const readData = (data) => {
     comparisionArr = []
     })
 
+    console.log(sharedValues.length)
+ let cs = 0
+    for (let i =0; i<sharedValues.length; i++){
+        if(sharedValues[i]==="c"){
+            cs++
+        }
+    }
+
+    console.log(cs)
+
     for(let i=0; i<sharedValues.length; i++){
         count += alphabetConversion[sharedValues[i]];
     }
     
+    console.log(count)
 //part 2
 
     let secondComparisionArr = [];
